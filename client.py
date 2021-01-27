@@ -21,7 +21,7 @@ class Client(object):
 
     def __init__(self):
         self.serverHost = 'localhost'
-        self.serverPort = 8889
+        self.serverPort = 4444
         self.socket = None
 
     def register_signal_handler(self):

