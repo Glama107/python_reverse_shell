@@ -1,17 +1,21 @@
 
 # Python-Reverse-Shell
+   ![glama tcp shell](https://i.imgur.com/5qPPCXu.png)
 
 This is a **fully working reverse shell** get from Youtube tutorial and edited by me to add more functionnality.
 It comes with a server.py and client.py. The reverse shell is based on the connection from the client to a server.
 There is a Received folder inside, it's required for the screenshot and downloading function. To install the project, just [click here](https://github.com/glama107/python_reverse_shell#installation)
 
 ## Functionnality
+![help message](https://i.imgur.com/jwfTMMq.png)
+
 
 This is a list of what this reverse shell can do :
  - Accept and list multiple client connections
  - Choose **IP** and **PORT** without editing the *.py*
  - Select a specified client by ID
  - A **full list** of clients connected to the server, with IP address, port used and name of the laptop
+ - ![enter image description here](https://i.imgur.com/1mRW261.png)
  - **Download** any files from the client machine to the server (*File Stealing*)
  - Make a **screenshot** of the client machine
  
