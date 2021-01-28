@@ -19,11 +19,11 @@ COMMANDS = {'\u001b[33m\u001b[1m\nhelp   ': ['Shows this help'],
             'list   ': ['Lists connected clients'],
             'exploit': ['Selects a client by its index. (ex : exploit 0, exploit 1...)'],
             'quit   ': ['Stops current connection with a client. Use it when client is selected'],
-            'exit   ': ['Shut server down and close app'],
+            'exit   ': ['Shut server down and close app\n\n'],
 
             'get    ': ['NEW!!! Downloading files from the client'],
             'capture': ['NEW!!! SCREENSHOT THE CLIENT SCREEN'],
-            'webcam ': ['(Not Added) CAPTURE A PICTURE OF WEBCAM!\u001b[0m\n\n'],
+            'webcam ': ['(Not Added) CAPTURE A PICTURE OF WEBCAM!'],
             'keylogger': ['(Not Added) CAPTURE A PICTURE OF WEBCAM!\u001b[0m\n\n'],
             }
 
