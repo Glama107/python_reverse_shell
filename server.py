@@ -24,7 +24,7 @@ COMMANDS = {'\u001b[33m\u001b[1m\nhelp   ': ['Shows this help'],
             'get    ': ['NEW!!! Downloading files from the client'],
             'capture': ['NEW!!! SCREENSHOT THE CLIENT SCREEN'],
             'webcam ': ['(Not Added) CAPTURE A PICTURE OF WEBCAM!'],
-            'keylogger': ['(Not Added) CAPTURE A PICTURE OF WEBCAM!\u001b[0m\n\n'],
+            'keylogger': ['(Not Added) CAPTURE THE KEYPAD OF CLIENT!\u001b[0m\n\n'],
             }
 
 
