@@ -17,7 +17,7 @@ This is a list of what this reverse shell can do :
  
 This is the future features that comes in future version:
 
- - *Keylogg* the client keyboard and register in a file
+ - *Keylogg* the client keyboard and register in a text files
  - Make a *webcam caption* to get a video or a photo from the webcam
  - And more ...
 
