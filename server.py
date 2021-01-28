@@ -122,7 +122,7 @@ class MultiServer(object):
             self.all_connections.append(conn)
             self.all_addresses.append(address)
             print(
-                '  \u001b[7m\u001b[35m\u001b[1mConnection has been established: {0} ({1})\u001b[0m'.format(address[-1],
+                '  \u001b[35m\u001b[1mConnection has been established: {0} ({1})\u001b[0m'.format(address[-1],
                                                                                                            address[0]))
         return
 
