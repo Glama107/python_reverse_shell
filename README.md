@@ -1,13 +1,29 @@
+
 # Python-Reverse-Shell
 
 This is a **fully working reverse shell** get from Youtube tutorial and edited by me to add more functionnality.
 It comes with a server.py and client.py. The reverse shell is based on the connection from the client to a server.
 There is a Received folder inside, it's required for the screenshot and downloading function.
 
+## Functionnality
+
+This is a list of what this reverse shell can do :
+ - Accept and list multiple client connections
+ - Choose **IP** and **PORT** without editing the *.py*
+ - Select a specified client by ID
+ - A **full list** of clients connected to the server, with IP address, port used and name of the laptop
+ - **Download** any files from the client machine to the server (*File Stealing*)
+ - Make a **screenshot** of the client machine
+ 
+This is the future features that comes in future version:
+
+ - *Keylogg* the client keyboard and register in a file
+ - Make a *webcam caption* to get a video or a photo from the webcam
+ - And more ...
 
 ## Installation
 To install this project, I'm based on a DigitalOcean Ubuntu server.
-Before starting, just make an `sudo apt-get update` 
+Before starting, just make a `sudo apt-get update` 
 
 For starting, clone the project  on your machine :
 
