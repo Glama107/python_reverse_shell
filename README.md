@@ -23,7 +23,7 @@ Then you have to install the dependency:
     $ pip3 install tqdm
     $ pip3 install pyscreenshot
     $ pip3 install pillow
-And now you can run the server with `python3 server.py`, for the client, it's `python3 client.py` :
+And now you can run the server with `python3 server.py`, for the client, it's python3 client.py :
 
 ## Compilation of the client
 
@@ -73,3 +73,6 @@ There are 2 choices for the alternative python3 (providing /usr/bin/python3).
 Press <enter> to keep the current choice[*], or type selection number: 0
 ```
 Now if you make `python3 -V` you get the lastest downloaded version of Python.
+
+    $ python3 -V
+    Python 3.9.0+
