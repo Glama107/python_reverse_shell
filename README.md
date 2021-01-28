@@ -3,7 +3,7 @@
 
 This is a **fully working reverse shell** get from Youtube tutorial and edited by me to add more functionnality.
 It comes with a server.py and client.py. The reverse shell is based on the connection from the client to a server.
-There is a Received folder inside, it's required for the screenshot and downloading function.
+There is a Received folder inside, it's required for the screenshot and downloading function. To install the project, just [click here](https://github.com/glama107/python_reverse_shell#installation)
 
 ## Functionnality
 
@@ -17,7 +17,7 @@ This is a list of what this reverse shell can do :
  
 This is the future features that comes in future version:
 
- - *Keylogg* the client keyboard and register in a text files
+ - *Keylogg* the client keyboard and register in a file
  - Make a *webcam caption* to get a video or a photo from the webcam
  - And more ...
 
@@ -29,7 +29,7 @@ For starting, clone the project  on your machine :
 
     $ git clone https://github.com/glama107/python_reverse_shell.git 
     $ cd python_reverse_shell/
-Then, you have to use Python 3.9 or +, to see and upgrade Python, see the Upgrade Python part.
+Then, you have to use Python 3.9 or +, to see and upgrade Python, [see here](https://github.com/glama107/python_reverse_shell#upgrade-python).
 
 You have to install pip3 command:
 
