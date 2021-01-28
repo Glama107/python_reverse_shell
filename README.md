@@ -1,7 +1,7 @@
 # Python-Reverse-Shell
 
 This is a **fully working reverse shell** get from Youtube tutorial and edited by me to add more functionnality.
-It comes with a server.py and client.py. The reverse shell is based on the connection from the client to the server.
+It comes with a server.py and client.py. The reverse shell is based on the connection from the client to a server.
 There is a Received folder inside, it's required for the screenshot and downloading function.
 
 
