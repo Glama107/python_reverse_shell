@@ -23,7 +23,7 @@ Then you have to install the dependency:
     $ pip3 install tqdm
     $ pip3 install pyscreenshot
     $ pip3 install pillow
-And now you can run the server with `python3 server.py`, for the client, it's python3 client.py :
+And now you can run the server with `python3 server.py`, for the client, it's `python3 client.py` :
 
 ## Compilation of the client
 
